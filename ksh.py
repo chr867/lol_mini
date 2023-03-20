@@ -8,6 +8,7 @@ rc('font', family=font)
 
 sql_conn = mu.connect_mysql('icia')
 df = mu.mysql_execute_dict('select * from lol_mini', sql_conn)
+sql_conn.close()
 df = pd.DataFrame(df)
 
 df
