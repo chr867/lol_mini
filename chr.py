@@ -8,6 +8,7 @@ rc('font', family=font) # 윈도우
 
 sql_conn = mu.connect_mysql('lol_icia')
 dic = mu.mysql_execute_dict('select * from lol_mini', sql_conn)
+sql_conn.close()
 df = pd.DataFrame(dic)
 
 tmp_df = df[['profileIcon', 'win']]

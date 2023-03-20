@@ -7,7 +7,7 @@ imp.reload(ai)
 raw_df = ai.get_rawdata('MASTER')
 mt_df = ai.get_match_timeline_df(raw_df)
 
-sql_conn = mu.connect_mysql('lol_icia')
+sql_conn = mu.connect_mysql('icia')
 sql_create = '''
 CREATE TABLE 
 LOL_MINI ( gameId varchar(20), gameDuration int, gameVersion varchar(20), summonerName varchar(50),
@@ -21,13 +21,13 @@ CONSTRAINT LMT_PK_ID_PID PRIMARY KEY (gameId, participantId))
 mu.mysql_execute(sql_create, sql_conn)
 sql_conn.close()
 
-sql_conn = mu.connect_mysql('lol_icia')
+sql_conn = mu.connect_mysql('icia')
 tqdm.pandas()
 mt_df.progress_apply(lambda x: ai.insert(x, sql_conn), axis=1)
 sql_conn.commit()
 sql_conn.close()
 
-ai.auto_insert(10)
+ai.auto_insert(500)
 
 raw_df['matches'][0]['info']['participants'][0]['teamId']
 raw_df['matches'][0]['info']['teams'][0]['teamId']
