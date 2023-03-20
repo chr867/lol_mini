@@ -6,7 +6,7 @@ font_path = "C:/Windows/Fonts/gulim.ttc"
 font = font_manager.FontProperties(fname=font_path).get_name()
 rc('font', family=font) # 윈도우
 
-sql_conn = mu.connect_mysql('lol_icia')
+sql_conn = mu.connect_mysql('icia')
 dic = mu.mysql_execute_dict('select * from lol_mini', sql_conn)
 sql_conn.close()
 df = pd.DataFrame(dic)

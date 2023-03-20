@@ -135,7 +135,7 @@ def auto_insert(num=int):
         idx = random.randrange(len(tier))
         rawdata_df = get_rawdata(tier[idx])
         result_df = get_match_timeline_df(rawdata_df)
-        conn = mu.connect_mysql('lol_icia')
+        conn = mu.connect_mysql('icia')
         result_df.progress_apply(lambda x: insert(x, conn), axis=1)
         conn.commit()
         conn.close()
