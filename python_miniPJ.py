@@ -10,7 +10,7 @@ mt_df = ai.get_match_timeline_df(raw_df)
 sql_conn = mu.connect_mysql('lol_icia')
 sql_create = '''
 CREATE TABLE 
-LOL_MINI ( gameId varchar(20), gameDuration int, gameVersion varchar(20), summonerName varchar(20),
+LOL_MINI ( gameId varchar(20), gameDuration int, gameVersion varchar(20), summonerName varchar(50),
 summonerLevel int, participantId int, championName varchar(20), champExperience int, teamPosition varchar(10), 
 teamId int, win varchar(10), kills int, deaths int, assists int, totalDamageDealtToChampions int, totalDamageTaken int, 
 wardsPlaced int, wardsKilled int, profileIcon int, firstChampion varchar(10), firstDragon varchar(10), firstTower varchar(10), 
@@ -26,6 +26,8 @@ tqdm.pandas()
 mt_df.progress_apply(lambda x: ai.insert(x, sql_conn), axis=1)
 sql_conn.commit()
 sql_conn.close()
+
+ai.auto_insert(10)
 
 raw_df['matches'][0]['info']['participants'][0]['teamId']
 raw_df['matches'][0]['info']['teams'][0]['teamId']
