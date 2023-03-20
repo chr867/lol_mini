@@ -4,7 +4,7 @@ import my_utils_PJ as mu
 from matplotlib import font_manager, rc
 font_path = "C:/Windows/Fonts/gulim.ttc"
 font = font_manager.FontProperties(fname=font_path).get_name()
-rc('font', family = font)
+rc('font', family=font)
 
 sql_conn = mu.connect_mysql('icia')
 df = mu.mysql_execute_dict('select * from lol_mini', sql_conn)

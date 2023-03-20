@@ -131,14 +131,17 @@ def auto_insert(num=int):
     """
     tqdm.pandas()
     for count in tqdm(range(num)):
-        tier = ['MASTER', 'GM', 'C']
-        idx = random.randrange(len(tier))
-        rawdata_df = get_rawdata(tier[idx])
-        result_df = get_match_timeline_df(rawdata_df)
-        conn = mu.connect_mysql('icia')
-        result_df.progress_apply(lambda x: insert(x, conn), axis=1)
-        conn.commit()
-        conn.close()
-        print(f'반복 {count+1}회 완료')
+        try:
+            tier = ['MASTER', 'GM', 'C']
+            idx = random.randrange(len(tier))
+            rawdata_df = get_rawdata(tier[idx])
+            result_df = get_match_timeline_df(rawdata_df)
+            conn = mu.connect_mysql('icia')
+            result_df.progress_apply(lambda x: insert(x, conn), axis=1)
+            conn.commit()
+            conn.close()
+            print(f'반복 {count+1}회 완료')
+        except Exception as e:
+            print(f'auto_insert {e}예외 발생')
     print('반복 완료')
     # time.sleep(60)
