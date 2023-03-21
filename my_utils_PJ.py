@@ -4,7 +4,7 @@ import pymysql
 import requests
 from tqdm import tqdm
 
-riot_api_key = 'RGAPI-40ceb6e4-9865-4597-85da-6535b79ee66c'
+riot_api_key = 'RGAPI-b1476f0d-2ef6-46cf-9226-9ceeccff5842'
 
 def connect_mysql(db):
     mysql_conn = pymysql.connect(host='localhost', user='root', password='1234', db=db, charset='utf8')
