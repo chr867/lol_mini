@@ -27,7 +27,7 @@ mt_df.progress_apply(lambda x: ai.insert(x, sql_conn), axis=1)
 sql_conn.commit()
 sql_conn.close()
 
-ai.auto_insert(500)
+ai.auto_insert(1000)
 
 raw_df['matches'][0]['info']['participants'][0]['teamId']
 raw_df['matches'][0]['info']['teams'][0]['teamId']
