@@ -13,9 +13,9 @@ df = pd.DataFrame(df)
 
 df
 # 와드 설치, 파괴 갯수와 승률 상관관계
-tmp_df = df[['wardsPlaced', 'wardsKilled', 'win']]
-sort_win_df = tmp_df[tmp_df['win'] == 'True']
-sort_lose_df = tmp_df[tmp_df['win'] == 'False']
+tmp_df = df[['wardsPlaced', 'wardsKilled', 'win', 'teamPosition']]
+sort_win_df = tmp_df[(tmp_df['win'] == 'True') | (tmp_df['teamPosition'] == 'Support')]
+sort_lose_df = tmp_df[(tmp_df['win'] == 'False') | (tmp_df['teamPosition'] == 'Support')]
 sort_lose_df['win'].count()
 
 plt.figure()
